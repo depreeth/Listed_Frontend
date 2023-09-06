@@ -4,8 +4,9 @@ import "../css/ProfileForm.css"
 import BasicForm from './BasicForm';
 import ContactForm from './ContactForm';
 
-const ProfileForm = ({ isOpen, onRequestClose }) => {
+const ProfileForm = ({ isOpen, onRequestClose ,setBasicInfo, setContactInfo }) => {
     const[contact,setContact]=useState(false);
+    
   return (
     <div>
       <Modal
@@ -19,7 +20,7 @@ const ProfileForm = ({ isOpen, onRequestClose }) => {
         <div className="text-xl font-semibold ">Add New Profile</div>
         <div onClick={onRequestClose}>X</div>
         </div>
-        {!contact ? <BasicForm setContact={setContact} contact={contact}/>:<ContactForm contact={contact} onRequestClose={onRequestClose} setContact={setContact}/>}
+        {!contact ? <BasicForm setContact={setContact} setProfileInfo={setBasicInfo} contact={contact}/>:<ContactForm contact={contact} setProfileInfo={setContactInfo} onRequestClose={onRequestClose} setContact={setContact}/>}
       </div>
     </Modal>
     </div>

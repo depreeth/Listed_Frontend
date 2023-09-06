@@ -23,6 +23,7 @@ import {
 } from 'chart.js';
 import { Bar, Doughnut } from 'react-chartjs-2';
 import ProfileForm from "../components/ProfileForm";
+import BasicForm from "../components/BasicForm";
 
 
 
@@ -37,6 +38,12 @@ ChartJS.register(
 );
 
 const Home = () => {
+
+  const [basicinfo,setBasicInfo]=useState(null);
+    const [contactinfo,setContactInfo]=useState({});
+    console.log("basic:",basicinfo)
+    console.log('contact:',contactinfo)
+
   const options = {
     categoryPercentage: 0.8,
     barPercentage:0.5,
@@ -283,18 +290,30 @@ const Home = () => {
                       </div>
                     </div>
                   </div>
-                  <div className=" w-full h-full border shadow-md rounded-2xl bg-white flex flex-col justify-center items-center">
+                  <div className=" w-full h-full border shadow-md rounded-2xl bg-white">
+                    {!basicinfo &&<div className=" w-full h-full flex flex-col justify-center items-center">
                     <div onClick={openForm}  className=" w-16 h-16 rounded-full flex justify-center bg-[#F2F2F2] items-center">
                       <img src={plus} alt=""/>
                     </div>
                     <div className=" text-gray-500">Add Profile</div>
+                    </div>}
+                    {basicinfo &&<div className=" w-full h-full flex flex-col">
+                      <div>{basicinfo.name}</div>
+                      <div className=" w-full h-full grid grid-cols-2 items-center justify-center">
+                        <div>{basicinfo.phone}</div>
+                        <div>{contactinfo.insta}</div>
+                        <div>{basicinfo.email}</div>
+                        <div>{contactinfo.youtube}</div>
+                      </div>
+                    </div>}
                   </div>
+                  
                 </div>
                 
             </div>
         </div>
       </div>
-      <div><ProfileForm isOpen={isFormOpen} onRequestClose={closeForm} /></div>
+      <div><ProfileForm isOpen={isFormOpen} setBasicInfo={setBasicInfo} setContactInfo={setContactInfo} onRequestClose={closeForm} /></div>
     </div>
   );
 };
