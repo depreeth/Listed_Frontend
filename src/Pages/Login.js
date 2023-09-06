@@ -1,4 +1,6 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
+import { GoogleOAuthProvider, GoogleLogin } from "@react-oauth/google";
 import github from "../assets/github.png";
 import skype from "../assets/skype.png";
 import linkdin from "../assets/linkedin.png";
@@ -7,6 +9,7 @@ import google from "../assets/google-icon.png";
 import apple from "../assets/apple 1.png";
 
 const Login = () => {
+  const navigate = useNavigate ();
   return (
     <div>
       <div className=" w-full h-screen flex bg-[#F8FAFF]">
@@ -37,13 +40,25 @@ const Login = () => {
             <div className=" text-4xl font-semibold ">Sign In</div>
             <div className=" my-2">Sign in to your account</div>
             <div className=" w-full flex justify-between my-2">
-              <div className=" px-3 py-2 bg-white  flex  items-center  rounded-md">
+              {/* <div className=" px-3 py-2 bg-white  flex  items-center  rounded-md">
                 <div>
                   <img src={google} alt="" />
                 </div>
                 <div className=" mx-2 text-sm">Sign in with Google</div>
-              </div>
-              <div className=" px-3 py-2  bg-white flex  items-center  rounded-md">
+              </div> */}
+              <GoogleOAuthProvider clientId="301748439252-asah2gou1ii33hoc57pfqk7qb867qkls.apps.googleusercontent.com">
+                <GoogleLogin
+                  onSuccess={(credentialResponse) => {
+                    navigate('/home')
+                    console.log(credentialResponse);
+                  }}
+                  onError={() => {
+                    console.log("Login Failed");
+                  }}
+                />
+              </GoogleOAuthProvider>
+              
+              <div className=" px-3 py-2 border  bg-white flex  items-center  rounded-md">
                 <div>
                   <img src={apple} alt="" />
                 </div>
