@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState,useEffect } from "react";
 import dashboard from "../assets/dashboard_icon.png";
 import transaction from "../assets/transaction_icon.png";
 import setting from "../assets/setting_icon.png";
@@ -45,6 +45,7 @@ ChartJS.register(
 const Home = () => {
   const [basicinfo, setBasicInfo] = useState(null);
   const [contactinfo, setContactInfo] = useState({});
+  const [currencydata,setCurrdata]=useState({})
   console.log("basic:", basicinfo);
   console.log("contact:", contactinfo);
 
@@ -73,6 +74,19 @@ const Home = () => {
       },
     },
   };
+  useEffect(() => {
+    const host = 'api.frankfurter.app';
+  fetch(`https://apiv2.bitcoinaverage.com/constants/exchangerates/global`)
+  .then(resp => resp.json())
+  .then((data) => {
+    // console.log(data)
+    setCurrdata(data)
+  });
+  }, []);
+  
+
+  console.log(currencydata)
+  
 
   const labels = ["Week 1", "Week 2", "Week 3", "Week 4"];
 
@@ -138,6 +152,7 @@ const Home = () => {
     setIsFormOpen(false);
     
   };
+  
 
   return (
     <div>

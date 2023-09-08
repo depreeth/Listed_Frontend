@@ -65,7 +65,7 @@ const Login = () => {
                 <div className=" mx-2 text-sm">Sign in with Google</div>
               </div>
             </div>
-            <div className=" w-full h-full my-2 bg-white rounded-[10px] px-8 py-6 flex flex-col">
+            <form onSubmit={()=>navigate('/home')} className=" w-full h-full my-2 bg-white rounded-[10px] px-8 py-6 flex flex-col">
               <label className="">Email Address</label>
               <div className=" w-full p-2 mt-2 mb-4 bg-[#EAEAEA] rounded-[10px]">
                 <input
@@ -81,10 +81,10 @@ const Login = () => {
                 />
               </div>
               <p className="text-[#346BD4] text-sm">Forgot password?</p>
-              <div className=" w-full mt-4  text-center bg-[#4185F4] text-white rounded-[10px] py-2">
+              <div  className=" w-full mt-4  text-center bg-[#4185F4] text-white rounded-[10px] py-2">
                 <button>Sign In</button>
               </div>
-            </div>
+            </form>
             <div className=" w-full text-center text-sm my-2 ">
               Don’t have an account?{" "}
               <span className="text-[#346BD4]">Register here</span>
