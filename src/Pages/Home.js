@@ -76,7 +76,7 @@ const Home = () => {
   };
   useEffect(() => {
     const host = 'api.frankfurter.app';
-  fetch(`https://apiv2.bitcoinaverage.com/constants/exchangerates/global`)
+  fetch(`https://${host}/2020-01-01..2020-01-31`)
   .then(resp => resp.json())
   .then((data) => {
     // console.log(data)
@@ -85,7 +85,7 @@ const Home = () => {
   }, []);
   
 
-  console.log(currencydata)
+  console.log(currencydata.rates)
   
 
   const labels = ["Week 1", "Week 2", "Week 3", "Week 4"];
